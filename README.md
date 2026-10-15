@@ -5,7 +5,10 @@
 <h1 align="center">Student Fee Management System</h1>
 
 <h3 align="center">
-A React-Based Dashboard for Student Records and Fee Tracking
+A React-Based Dashboard for Student Records and Fee Tracking <br/><br/>
+  <a href="https://student-fee-management-system-durganishad.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/🌐_Live_Demo-View_Project-0969DA?style=for-the-badge" alt="View Live Demo"/>
+</a>
 </h3>
 
 <p align="center">
@@ -42,14 +45,8 @@ A React-Based Dashboard for Student Records and Fee Tracking
 
 <!-- ==================== PROJECT OVERVIEW ==================== -->
 
+
 ## Project Overview
-
-<div align="center">
-<a href="https://student-fee-management-system-durganishad.vercel.app/">
-  <img src="https://img.shields.io/badge/🌐%20Live-Demo-0072ff?style=for-the-badge" alt="Live Demo"/>
-</a>
-
-</div>
 
 The **Student Fee Management System** is a web-based dashboard developed to organize student records and monitor fee payments through a centralized interface.
 
@@ -66,9 +63,6 @@ The current version uses sample student data stored in the frontend. An SQL scri
 - Make student records easier to search, filter, and sort.
 - Keep UI components and business logic organized separately.
 - Prepare a foundation for future backend and database integration.
-
----
-
 #
 
 <!-- ==================== FEATURES ==================== -->
