@@ -44,6 +44,13 @@ A React-Based Dashboard for Student Records and Fee Tracking
 
 ## Project Overview
 
+<div align="center">
+<a href="https://student-fee-management-system-durganishad.vercel.app/">
+  <img src="https://img.shields.io/badge/🌐%20Live-Demo-0072ff?style=for-the-badge" alt="Live Demo"/>
+</a>
+
+</div>
+
 The **Student Fee Management System** is a web-based dashboard developed to organize student records and monitor fee payments through a centralized interface.
 
 Managing student fee information manually can make it difficult to identify outstanding balances and review overall fee collection. This project demonstrates how a dashboard can present student information and fee-related summaries in a structured and accessible way.
