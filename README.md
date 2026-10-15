@@ -62,23 +62,7 @@ The current version uses sample student data stored in the frontend. An SQL scri
 
 ---
 
-## React-Based Dashboard
-
-A modern dashboard for managing student records, monitoring fee payments, and viewing fee collection summaries.
-
-<p align="center">
-  <img
-    src="/assets/dashboardimg.png"
-    alt="Student Fee Management System Dashboard"
-    width="100%"
-  />
-</p>
-
-<p align="center">
-  <em>Dashboard overview featuring student records and fee tracking summaries.</em>
-</p>
-
----
+#
 
 <!-- ==================== FEATURES ==================== -->
 
