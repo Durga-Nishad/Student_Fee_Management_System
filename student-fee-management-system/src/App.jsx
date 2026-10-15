@@ -1,122 +1,124 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useMemo, useState } from "react";
+import {
+  Users,
+  Wallet,
+  CircleDollarSign,
+  Clock3,
+} from "lucide-react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import DashboardHeader from "./components/DashboardHeaders.jsx";
+import SummaryCard from "./components/SummaryCard.jsx";
+import SearchBar from "./components/SearchBar.jsx";
+import StudentTable from "./components/StudentTable.jsx";
+import { students } from "./data/students.js";
+import {
+  calculateFeeSummary,
+  filterAndSortStudents,
+} from "./utils/feeUtils";
+
+export default function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [pendingOnly, setPendingOnly] = useState(false);
+  const [sortByPending, setSortByPending] = useState(false);
+
+  const summary = useMemo(
+    () => calculateFeeSummary(students),
+    []
+  );
+
+  const visibleStudents = useMemo(
+    () =>
+      filterAndSortStudents(
+        students,
+        searchTerm,
+        pendingOnly,
+        sortByPending
+      ),
+    [searchTerm, pendingOnly, sortByPending]
+  );
+
+  const summaryCards = [
+    {
+      title: "Total Students",
+      value: summary.totalStudents,
+      icon: Users,
+      color: "bg-blue-50 text-blue-700",
+    },
+    {
+      title: "Total Fees",
+      value: summary.totalFees,
+      type: "currency",
+      icon: Wallet,
+      color: "bg-violet-50 text-violet-700",
+    },
+    {
+      title: "Total Collected",
+      value: summary.totalCollected,
+      type: "currency",
+      icon: CircleDollarSign,
+      color: "bg-emerald-50 text-emerald-700",
+    },
+    {
+      title: "Total Pending",
+      value: summary.totalPending,
+      type: "currency",
+      icon: Clock3,
+      color: "bg-rose-50 text-rose-700",
+    },
+  ];
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <DashboardHeader />
+
+        <section
+          aria-label="Fee summary"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
         >
-          Count is {count}
-        </button>
-      </section>
+          {summaryCards.map((card) => (
+            <SummaryCard key={card.title} {...card} />
+          ))}
+        </section>
 
-      <div className="ticks"></div>
+        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="space-y-5 border-b border-slate-100 p-5 sm:p-6">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-slate-900">
+                  Student fee records
+                </h2>
+                <p className="mt-1 text-sm text-slate-500">
+                  Search, filter and review payment status.
+                </p>
+              </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+              <p className="text-sm text-slate-500">
+                Showing{" "}
+                <span className="font-semibold text-slate-800">
+                  {visibleStudents.length}
+                </span>{" "}
+                of {students.length} students
+              </p>
+            </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            <SearchBar
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+              pendingOnly={pendingOnly}
+              onPendingChange={setPendingOnly}
+              sortByPending={sortByPending}
+              onSortChange={setSortByPending}
+            />
+          </div>
+
+          <StudentTable students={visibleStudents} />
+        </section>
+
+        <footer className="pb-2 text-center text-xs text-slate-400">
+          Student Fee Management Dashboard · React + Tailwind CSS · Demo data
+        </footer>
+      </div>
+    </main>
+  );
 }
-
-export default App
