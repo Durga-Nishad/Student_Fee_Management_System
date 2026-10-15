@@ -68,7 +68,7 @@ A modern dashboard for managing student records, monitoring fee payments, and vi
 
 <p align="center">
   <img
-    src="src/assets/dashboardimg.png"
+    src="/assets/dashboardimg.png"
     alt="Student Fee Management System Dashboard"
     width="100%"
   />
